@@ -10,6 +10,10 @@ import CreateListing from './pages/CreateListing';
 import UpdateListing from './pages/UpdateListing';
 import Listing from './pages/Listing';
 import Search from './pages/Search';
+import Footer from './components/Footer';
+import ContactForm from './pages/ContactForm';
+import Terms from './pages/Terms';
+import Faqs from './pages/Faqs';
 
 export default function App() {
   return (
@@ -20,6 +24,9 @@ export default function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/about' element={<About />} />
+        <Route path='/contact-form' element={<ContactForm />} />
+        <Route path='/terms' element={<Terms />} />
+        <Route path='/faqs' element={<Faqs />} />
         <Route path='/search' element={<Search />} />
         <Route path='/listing/:listingId' element={<Listing />} />
 
@@ -32,6 +39,8 @@ export default function App() {
           />
         </Route>
       </Routes>
+     
+      <Footer/>
     </BrowserRouter>
   );
 }

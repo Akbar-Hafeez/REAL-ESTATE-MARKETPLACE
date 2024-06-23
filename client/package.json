@@ -10,6 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/joy": "^5.0.0-beta.36",
+    "@mui/material": "^5.15.20",
+    "@mui/icons-material": "^5.15.7",
+    "axios": "^1.7.2",
+    "react-hook-form": "^7.52.0",
+    "react-hot-toast": "^2.4.1",
     "@reduxjs/toolkit": "^1.9.5",
     "dotenv": "^16.4.5",
     "firebase": "^10.3.1",

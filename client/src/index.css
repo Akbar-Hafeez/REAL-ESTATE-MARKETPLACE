@@ -1,7 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  .button {
+    @apply  button-gradient  text-white  p-2 rounded-md hover:rounded-full hover:shadow-[#000080] hover:border hover:border-black hover:shadow-2xl ;
+  }
+
+}
+
 
 body{
     background-color: rgb(241, 245, 241);
 }
+.gradient {
+    background: linear-gradient(50deg, rgb(39, 194, 54) 38%, rgb(96, 227, 96) 68%,  rgb(53, 200, 68) 28%);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(50deg, rgb(55, 194, 78) 38%, rgb(154, 241, 134) 68%,  rgb(74, 219, 86) 28%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .button-gradient {
+    background: linear-gradient(50deg, rgb(55, 194, 78) 38%, rgb(154, 241, 134) 68%,  rgb(53, 200, 68) 28%);
+    
+  }
+  .gradient {
+    background: linear-gradient(50deg, rgb(30, 225, 50) 3%, rgb(67, 249, 67) 28%,  rgb(7, 246, 31) 28%);
+    
+  }
+  
+  .hover\:gradient-text:hover {
+    background: linear-gradient(50deg, rgb(30, 225, 50) 3%, rgb(67, 249, 67) 28%,  rgb(7, 246, 31) 28%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hover\:gradient:hover {
+    background: linear-gradient(50deg, rgb(30, 225, 50) 3%, rgb(67, 249, 67) 28%,  rgb(7, 246, 31) 28%);
+   
+  }
+  
