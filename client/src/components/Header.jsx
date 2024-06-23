@@ -38,7 +38,7 @@ export default function Header() {
     }
   }, [location.search]);
   return (
-    <header className='bg-slate-700 sticky top-0 shadow-md z-50'>
+    <header className='navbar-gradient sticky top-0 shadow-md z-50'>
       <div>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
@@ -87,7 +87,7 @@ export default function Header() {
                 alt='profile'
               />
             ) : (
-              <li className=' text-slate-700 hover:underline hover:text-white mr-6 md:mr-0 w-full '> Sign in</li>
+              <li className=' hover:gradient-text hover:underline text-white mr-6 md:mr-0 w-full '> Sign in</li>
             )}
           </Link>
           <button className='font-medium  hidden md:flex button '>

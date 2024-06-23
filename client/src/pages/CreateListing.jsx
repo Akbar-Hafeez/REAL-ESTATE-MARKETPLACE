@@ -8,6 +8,7 @@ import {
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -18,10 +19,12 @@ export default function CreateListing() {
     name: '',
     description: '',
     address: '',
+    city: '',
+    number: '',
     type: 'rent',
     bedrooms: 1,
     bathrooms: 1,
-    regularPrice: 50,
+    regularPrice: 1000,
     discountPrice: 0,
     offer: false,
     parking: false,
@@ -132,6 +135,7 @@ export default function CreateListing() {
         return setError('Discount price must be lower than regular price');
       setLoading(true);
       setError(false);
+     
       const res = await fetch('/api/listing/create', {
         method: 'POST',
         headers: {
@@ -147,7 +151,11 @@ export default function CreateListing() {
       if (data.success === false) {
         setError(data.message);
       }
-      navigate(`/listing/${data._id}`);
+      toast.success("Your AD was listed Successfully !");
+      setTimeout(() => {
+        navigate(`/listing/${data._id}`);
+      }, 1500);
+     
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -155,18 +163,19 @@ export default function CreateListing() {
   };
   return (
     <main className='p-3 max-w-4xl mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>
+      <Toaster/>
+      <h1 className='text-3xl font-semibold text-center my-7 text-gradient'>
         Create a Listing
       </h1>
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
           <input
             type='text'
-            placeholder='Name'
+            placeholder='Property Title'
             className='border p-3 rounded-lg'
             id='name'
             maxLength='62'
-            minLength='10'
+            minLength='5'
             required
             onChange={handleChange}
             value={formData.name}
@@ -176,6 +185,7 @@ export default function CreateListing() {
             placeholder='Description'
             className='border p-3 rounded-lg'
             id='description'
+            minLength='20'
             required
             onChange={handleChange}
             value={formData.description}
@@ -185,9 +195,33 @@ export default function CreateListing() {
             placeholder='Address'
             className='border p-3 rounded-lg'
             id='address'
+            minLength='20'
+            maxLength='200'
             required
             onChange={handleChange}
             value={formData.address}
+          />
+          <input
+            type='text'
+            placeholder='City Name'
+            className='border p-3 rounded-lg'
+            id='city'
+            minLength='4'
+            maxLength='30'
+            required
+            onChange={handleChange}
+            value={formData.city}
+          />
+          <input
+            type='text'
+            placeholder='Phone Number'
+            className='border p-3 rounded-lg'
+            id='number'
+            minLength='10'
+            maxLength='15'
+            required
+            onChange={handleChange}
+            value={formData.number}
           />
           <div className='flex gap-6 flex-wrap'>
             <div className='flex gap-2'>
@@ -247,7 +281,7 @@ export default function CreateListing() {
                 type='number'
                 id='bedrooms'
                 min='1'
-                max='10'
+                max='20'
                 required
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
@@ -260,7 +294,7 @@ export default function CreateListing() {
                 type='number'
                 id='bathrooms'
                 min='1'
-                max='10'
+                max='20'
                 required
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
@@ -273,16 +307,16 @@ export default function CreateListing() {
                 type='number'
                 id='regularPrice'
                 min='50'
-                max='10000000'
+                max='10000000000'
                 required
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
                 value={formData.regularPrice}
               />
               <div className='flex flex-col items-center'>
-                <p>Regular price</p>
+                <p >Regular price</p>
                 {formData.type === 'rent' && (
-                  <span className='text-xs'>($ / month)</span>
+                  <span className='text-xs'>(Rs / month)</span>
                 )}
               </div>
             </div>
@@ -292,7 +326,7 @@ export default function CreateListing() {
                   type='number'
                   id='discountPrice'
                   min='0'
-                  max='10000000'
+                  max='10000000000'
                   required
                   className='p-3 border border-gray-300 rounded-lg'
                   onChange={handleChange}
@@ -302,7 +336,7 @@ export default function CreateListing() {
                   <p>Discounted price</p>
 
                   {formData.type === 'rent' && (
-                    <span className='text-xs'>($ / month)</span>
+                    <span className='text-xs'>(Rs / month)</span>
                   )}
                 </div>
               </div>
@@ -329,7 +363,7 @@ export default function CreateListing() {
               type='button'
               disabled={uploading}
               onClick={handleImageSubmit}
-              className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80'
+              className='p-3 button text-white border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80'
             >
               {uploading ? 'Uploading...' : 'Upload'}
             </button>
@@ -359,7 +393,7 @@ export default function CreateListing() {
             ))}
           <button
             disabled={loading || uploading}
-            className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+            className='p-3 button bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
           >
             {loading ? 'Creating...' : 'Create listing'}
           </button>
@@ -369,3 +403,4 @@ export default function CreateListing() {
     </main>
   );
 }
+

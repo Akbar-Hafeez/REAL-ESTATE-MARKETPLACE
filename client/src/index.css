@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer components {
   .button {
-    @apply  button-gradient  text-white  p-2 rounded-md hover:rounded-full hover:shadow-[#000080] hover:border hover:border-black hover:shadow-2xl ;
+    @apply  button-gradient  text-white  p-2 rounded-md hover:rounded-full hover:shadow-green-400 hover:border hover:border-green-300 hover:shadow-2xl ;
   }
 
 }
@@ -14,6 +14,10 @@ body{
 }
 .gradient {
     background: linear-gradient(50deg, rgb(39, 194, 54) 38%, rgb(96, 227, 96) 68%,  rgb(53, 200, 68) 28%);
+  }
+  
+.navbar-gradient {
+    background: linear-gradient(50deg, rgb(191, 205, 193) 38%, rgb(111, 114, 111) 68%,  rgb(151, 163, 153) 28%);
   }
   
   .text-gradient {
