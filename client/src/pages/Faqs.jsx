@@ -20,12 +20,12 @@ const FAQ = () => {
               id="panel1-header"
             >
               <Typography sx={{ fontSize: '18px', color: grey[700] }}>
-                What is One Click Property?
+                What is Zyck Property?
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-              One Click Property is a platform where users can buy, sell, rent, or post ads for real estate properties. We provide a secure environment for users to connect and transact directly with each other.
+              Zyck Property is a platform where users can buy, sell, rent, or post ads for real estate properties. We provide a secure environment for users to connect and transact directly with each other.
               </Typography>
             </AccordionDetails>
           </Accordion>

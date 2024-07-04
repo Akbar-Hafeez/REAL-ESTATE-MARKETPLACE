@@ -81,7 +81,7 @@ export default function Home() {
           place with ease
         </h1>
         <div className='text-gray-400 text-xs sm:text-sm'>
-        <span className='text-[#000080]'>  One Click Property </span>is the best place to find your next perfect place to
+        <span className='text-[#000080]'>  Zyck Property </span>is the best place to find your next perfect place to
           live.
           <br />
           We have a wide range of properties for you to choose from.

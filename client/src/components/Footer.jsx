@@ -129,10 +129,10 @@ export default function Footer() {
         </ul>
         </div>
       </div>
-<div className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center lg:justify-end'>
-    <p className='text-gray-300 text-sm mt-8 lg:mt-12'>Developed By <span className='hover:gradient-text cursor-pointer'>AKBAR HAFEEZ</span></p>
-      <p className='text-sm text-gray-300 mt-8 flex lg:justify-end'>Copyright © 2024<a href='https://readymadeui.com/'
-        target='_blank' className="hover:underline mx-1 hover:gradient-text">One Click Property</a>All Rights Reserved.</p></div>
+<div className='flex justify-center items-center text-center'>
+    
+      <p className='text-sm text-gray-300 mt-8 flex '>Copyright © 2024<a href='https://readymadeui.com/'
+        target='_blank' className="hover:underline mx-1 hover:gradient-text">Zyck Property</a>All Rights Reserved.</p></div>
     </footer>
   )
 }

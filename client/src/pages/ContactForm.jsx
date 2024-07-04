@@ -87,7 +87,7 @@ export default function ContactForm() {
             Don’t Hesitate To Contact Us
           </h2>
           <p className=" text-white text-md font-medium mt-10">
-            Get in touch with us to explore latest properties and experience the reliability and quality that define One Click Property.
+            Get in touch with us to explore latest properties and experience the reliability and quality that define Zyck Property.
           </p>
           <ul className="mt-8 space-y-6">
             <li className="flex items-center max-lg:justify-center">

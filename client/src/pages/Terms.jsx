@@ -6,7 +6,7 @@ export default function Terms() {
     <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
       <h1 className="text-3xl font-bold mb-4 text-gradient">Terms & Conditions</h1>
       <p className="mb-4">
-        Welcome to One Click Property. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully. If you do not agree with these terms, you should not use our website.
+        Welcome to Zyck Property. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully. If you do not agree with these terms, you should not use our website.
       </p>
 
       <h2 className="text-2xl font-semibold mb-2">1. Acceptance of Terms</h2>
