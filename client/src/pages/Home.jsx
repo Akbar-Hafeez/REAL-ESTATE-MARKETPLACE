@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation,Autoplay } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
+import Search from '../components/Search';
+import { FaHome } from 'react-icons/fa';
+import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 export default function Home() {
-  const MainCarousel = [
-        {'img':'https://firebasestorage.googleapis.com/v0/b/oneclickproperty.appspot.com/o/1718704144630pexels-alexander-f-ungerer-157458816-20702842.jpg?alt=media&token=725271c4-f6bf-4783-a8d2-68c9fd5c3ab1'},
-        {'img':'https://firebasestorage.googleapis.com/v0/b/oneclickproperty.appspot.com/o/1718704753327pexels-nextvoyage-3051551.jpg?alt=media&token=625100b9-ba5a-459a-af28-ad0cc091426b'},
-        {'img':'https://cdn.pixabay.com/photo/2017/04/10/22/28/residence-2219972_1280.jpg'},
-        {'img':'https://firebasestorage.googleapis.com/v0/b/oneclickproperty.appspot.com/o/1718679401297bank-head-office-5971348_1920.jpg?alt=media&token=8b350f06-d634-43e5-b56a-aaffe884445f'},
-        {'img':'https://cdn.pixabay.com/photo/2016/10/06/17/28/architecture-1719526_1280.jpg'}
-        
-      ]
+
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
-  SwiperCore.use([Autoplay,Navigation]);
+  
  
   useEffect(() => {
     const fetchOfferListings = async () => {
@@ -55,64 +48,32 @@ export default function Home() {
   }, []);
   return (
     <div>
-      
-<Swiper
-      navigation
-      autoplay={{ delay: 3000 }}
-      spaceBetween={50}
-      slidesPerView={1}
-    >
-      {MainCarousel.map((slide, index) => (
-        <SwiperSlide key={index}>
-          <div
-            style={{
-              background: `url(${slide.img}) center no-repeat`,
-              backgroundSize: 'cover',
-            }}
-            className="h-[530px]"
-          ></div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-    <div className='flex flex-col gap-6 pt-20 px-3 max-w-6xl mx-auto'>
-        <h1 className=' font-bold text-3xl lg:text-6xl'>
-          <span className='text-gradient'>Find your next </span><span className='text-[#000080]'>perfect</span>
-          <br />
-          place with ease
-        </h1>
-        <div className='text-gray-400 text-xs sm:text-sm'>
-        <span className='text-[#000080]'>  Zyck Property </span>is the best place to find your next perfect place to
-          live.
-          <br />
-          We have a wide range of properties for you to choose from.
-        </div>
-        <Link
-          to={'/search'}
-          className=''
-        >
-         <button className='px-3 font-medium lg:font-bold button flex items-center justify-center gap-1 mt-2'>Let's get started
-         
-<span className='mt-[6px]'><lord-icon
-    src="https://cdn.lordicon.com/whtfgdfm.json"
-    trigger="hover"
-      colors="primary:#ffffff"
-    style={{width:'24px',height:'20px'}}>
-      
-</lord-icon></span>
-         </button>
-         
-
-        </Link>
-      </div>
+     
+<div className='relative flex flex-col items-center justify-center'>
+  <img src="5.jpg" alt="" className='h-[580px] w-full opacity-95'/>
+  <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-6 pt-20 px-3 max-w-6xl'>
+    <h1 className='font-bold text-3xl lg:text-5xl text-center text-white'>
+    <span className='text-4xl font-bold '>
+       The Best Way To</span>
+      <br />
+      <span className=''> Find Your Perfect Home</span>
+    </h1>
+   <div className='my-12'> <Search/></div>
+  </div>
+</div>
 
       {/* listing results for offer, sale and rent */}
 
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
         {offerListings && offerListings.length > 0 && (
           <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold lg:font-bold text-gradient'>Recent offers</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+            <div className='my-3 flex items-center justify-between'>
+             <div> <h2 className='text-2xl lg:text-4xl font-semibold lg:font-bold text-gradient'>Featured Properties</h2>
+              <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more featured Properties</Link></div>
+              <h1 className='lg:px-28 flex items-center'>
+                <FaHome size={30} color='green'/>
+                <p className='px-2'><span className='text-green-700 font-bold'>1000+</span> Available Properties</p>
+              </h1>
             </div>
             <div className='flex flex-wrap gap-4'>
               {offerListings.map((listing) => (
@@ -123,9 +84,13 @@ export default function Home() {
         )}
         {rentListings && rentListings.length > 0 && (
           <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold lg:font-bold text-gradient'>Recent places for rent</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+              <div className='my-3 flex items-center justify-between'>
+             <div> <h2 className='text-2xl lg:text-4xl font-semibold lg:font-bold text-gradient'>Recent Places For Rent</h2>
+              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link></div>
+              <h1 className='lg:px-28 flex items-center'>
+                <AssuredWorkloadIcon size={30} className='text-green-700'/>
+                <p className='px-2'>All Properties <span className='text-green-700 font-bold'>For Rent</span> </p>
+              </h1>
             </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing) => (
@@ -136,9 +101,13 @@ export default function Home() {
         )}
         {saleListings && saleListings.length > 0 && (
           <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold lg:font-bold text-gradient'>Recent places for sale</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
+             <div className='my-3 flex items-center justify-between'>
+             <div> <h2 className='text-2xl lg:text-4xl font-semibold lg:font-bold text-gradient'>Recent Places For Sold</h2>
+              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for Sold</Link></div>
+              <h1 className='lg:px-28 flex items-center'>
+                <CurrencyExchangeIcon size={30} className='text-green-700'/>
+                <p className='px-2'>All Properties <span className='text-green-700 font-bold'>For Sold</span> </p>
+              </h1>
             </div>
             <div className='flex flex-wrap gap-4'>
               {saleListings.map((listing) => (

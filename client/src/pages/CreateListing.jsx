@@ -9,9 +9,17 @@ import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 export default function CreateListing() {
-  const { currentUser } = useSelector((state) => state.user);
+  const [city, setCity] = useState('');
+  const [category, setCategory] = useState('');
+ const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
@@ -19,11 +27,12 @@ export default function CreateListing() {
     name: '',
     description: '',
     address: '',
-    city: '',
+    
     number: '',
     type: 'rent',
     bedrooms: 1,
     bathrooms: 1,
+    area:0,
     regularPrice: 1000,
     discountPrice: 0,
     offer: false,
@@ -94,12 +103,19 @@ export default function CreateListing() {
       imageUrls: formData.imageUrls.filter((_, i) => i !== index),
     });
   };
-
+const handleChange2 = (e) => {
+ setCategory(e.target.value) 
+}
+const handleChangeCity = (e) => {
+  setCity(e.target.value) 
+      
+}
   const handleChange = (e) => {
-    if (e.target.id === 'sale' || e.target.id === 'rent') {
+   if (e.target.id === 'sale' || e.target.id === 'rent') {
       setFormData({
         ...formData,
         type: e.target.id,
+       
       });
     }
 
@@ -117,7 +133,7 @@ export default function CreateListing() {
     if (
       e.target.type === 'number' ||
       e.target.type === 'text' ||
-      e.target.type === 'textarea'
+      e.target.type === 'textarea' 
     ) {
       setFormData({
         ...formData,
@@ -143,6 +159,8 @@ export default function CreateListing() {
         },
         body: JSON.stringify({
           ...formData,
+          city,
+          category,
           userRef: currentUser._id,
         }),
       });
@@ -201,17 +219,48 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.address}
           />
-          <input
-            type='text'
-            placeholder='City Name'
-            className='border p-3 rounded-lg'
-            id='city'
-            minLength='4'
-            maxLength='30'
-            required
-            onChange={handleChange}
-            value={formData.city}
-          />
+         <div className='grid grid-cols-1 md:grid-cols-2 justify-around gap-4'>
+          <div>
+          <Box sx={{ minWidth: 120 , backgroundColor:'white'}}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">City</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="city"
+          value={city}
+          label="City"
+          onChange={handleChangeCity}
+        >
+          <MenuItem value='karachi'>Karachi</MenuItem>
+          <MenuItem value='Hyderabad'>Hyderabad</MenuItem>
+          <MenuItem value='Peshawar'>Peshawar</MenuItem>
+          <MenuItem value='Quetta'>Quetta</MenuItem>
+          <MenuItem value='Lahore'>Lahore</MenuItem>
+          <MenuItem value='Islamabad'>Islamabad</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+          </div>
+          <div>
+          <Box sx={{ minWidth: 120 , backgroundColor:'white' }}>
+      <FormControl fullWidth >
+        <InputLabel  id="demo-simple-select-label">Category</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="category"
+          value={category}
+          label="Category"
+          onChange={handleChange2}
+        >
+          <MenuItem value='House'>House</MenuItem>
+          <MenuItem value='Apartment'>Apartment</MenuItem>
+          <MenuItem value='Offices'>Offices</MenuItem>
+          <MenuItem value='Studio'>Studio</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+          </div>
+         </div>
           <input
             type='text'
             placeholder='Phone Number'
@@ -272,7 +321,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 checked={formData.offer}
               />
-              <span>Offer</span>
+              <span>Featured</span>
             </div>
           </div>
           <div className='flex flex-wrap gap-6'>
@@ -301,6 +350,17 @@ export default function CreateListing() {
                 value={formData.bathrooms}
               />
               <p>Baths</p>
+            </div>
+            <div className='flex items-center gap-2'>
+              <input
+                type='number'
+                id='area'
+                required
+                className='p-3 border border-gray-300 rounded-lg'
+                onChange={handleChange}
+                value={formData.area}
+              />
+              <p>Area(sq.ft)</p>
             </div>
             <div className='flex items-center gap-2'>
               <input

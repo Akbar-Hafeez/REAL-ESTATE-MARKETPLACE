@@ -18,6 +18,10 @@ const listingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    category: {
+      type: String,
+      required: true,
+    },
     number: {
       type: String,
       required: true,
@@ -37,6 +41,10 @@ const listingSchema = new mongoose.Schema(
     bedrooms: {
       type: Number,
       required: true,
+    },
+    area:{
+      type:Number,
+      required:true
     },
     furnished: {
       type: Boolean,
